@@ -1,5 +1,6 @@
 const express = require('express');
 const postRoutes = require('./routes/post');
+const authRoutes = require('./routes/auth');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const connectDB = require('./db');
@@ -28,6 +29,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(express.json())
 
 app.use('/api/posts',postRoutes)
+app.use('/api/auth', authRoutes)
 
 app.listen(port, () => {
   console.log(`服务正在运行于 http://localhost:${port}`);
