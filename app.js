@@ -19,6 +19,15 @@ const options = {
       description: '这是使用 Express 搭建的博客后端接口文档',
     },
     servers: [{ url: 'http://localhost:3000' }],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   // 告诉 Swagger 去哪里找 API 注释（这里指你的路由文件）
   apis: ['./routes/*.js'], 
