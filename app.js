@@ -42,4 +42,5 @@ app.use('/api/auth', authRoutes)
 
 app.listen(port, () => {
   console.log(`服务正在运行于 http://localhost:${port}`);
+  console.log(`Swagger UI 文档正在运行于 http://localhost:${port}/api-docs`);
 });
