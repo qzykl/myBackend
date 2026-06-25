@@ -3,9 +3,10 @@ const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+require('dotenv').config();
 const connectDB = require('./db');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // 链接数据库
 connectDB()
@@ -19,6 +20,15 @@ const options = {
       description: '这是使用 Express 搭建的博客后端接口文档',
     },
     servers: [{ url: 'http://localhost:3000' }],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   // 告诉 Swagger 去哪里找 API 注释（这里指你的路由文件）
   apis: ['./routes/*.js'], 
@@ -31,6 +41,7 @@ app.use(express.json())
 app.use('/api/posts',postRoutes)
 app.use('/api/auth', authRoutes)
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0' ,() => {
   console.log(`服务正在运行于 http://localhost:${port}`);
+  console.log(`Swagger UI 文档正在运行于 http://localhost:${port}/api-docs`);
 });
