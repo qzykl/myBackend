@@ -3,9 +3,10 @@ const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+require('dotenv').config();
 const connectDB = require('./db');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // 链接数据库
 connectDB()
@@ -40,7 +41,7 @@ app.use(express.json())
 app.use('/api/posts',postRoutes)
 app.use('/api/auth', authRoutes)
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0' ,() => {
   console.log(`服务正在运行于 http://localhost:${port}`);
   console.log(`Swagger UI 文档正在运行于 http://localhost:${port}/api-docs`);
 });

@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
   }
 
   // 生成 Token，有效期 1 小时
-  const token = jwt.sign({ userId: user._id }, 'YOUR_SECRET_KEY', { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   res.json({ token });
 });
 
