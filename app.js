@@ -1,6 +1,7 @@
 const express = require('express');
 const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
+const quotationsRoutes = require('./routes/quotations');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require('dotenv').config();
@@ -31,17 +32,18 @@ const options = {
     },
   },
   // 告诉 Swagger 去哪里找 API 注释（这里指你的路由文件）
-  apis: ['./routes/*.js'], 
+  apis: ['./routes/*.js'],
 };
 const specs = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(express.json())
 
-app.use('/api/posts',postRoutes)
+app.use('/api/posts', postRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/quotations', quotationsRoutes)
 
-app.listen(port,'0.0.0.0' ,() => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`服务正在运行于 http://localhost:${port}`);
   console.log(`Swagger UI 文档正在运行于 http://localhost:${port}/api-docs`);
 });
