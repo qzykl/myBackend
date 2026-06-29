@@ -19,7 +19,7 @@ const options = {
       version: '1.0.0',
       description: '这是使用 Express 搭建的博客后端接口文档',
     },
-    servers: [{ url: 'http://localhost:3000' }],
+    servers: [{ url: 'http://localhost:3001' }],
     components: {
       securitySchemes: {
         bearerAuth: {
