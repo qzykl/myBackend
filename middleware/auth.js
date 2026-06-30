@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
   const token = authHeader.split(' ')[1];
   
   try {
-    const decoded = jwt.verify(token, 'YOUR_SECRET_KEY'); // 校验 Token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'my_super_secret_key_2024'); // 校验 Token
     req.user = decoded; // 将用户信息挂载到 req 对象上，后续逻辑可用
     next(); // 放行，进入下一个处理函数
   } catch (err) {
